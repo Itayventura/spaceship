@@ -35,4 +35,10 @@ public class SpaceshipController {
         return getSpaceships(model);
     }
 
+    @GetMapping("/delete/{id}")
+    public String deleteSpaceship(@PathVariable("id") Integer id, Model model){
+        this.repository.deleteById(id);
+        return getSpaceships(model);
+    }
+
 }

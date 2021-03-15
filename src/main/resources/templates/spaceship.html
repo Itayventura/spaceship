@@ -14,6 +14,12 @@
                 <div class="fields">
                     <div class="name" th:text="${spaceship.name}"></div>
                     <div class="crew" th:text="${spaceship.crew}"></div>
+                    <div>
+                        <a th:href="@{/spaceship/delete/{id}(id=${spaceship.id})}">
+                            Delete
+                        </a>
+
+                    </div>
                 </div>
             </div>
         </div>
