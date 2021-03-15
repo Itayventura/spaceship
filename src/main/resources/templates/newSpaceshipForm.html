@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Spaceships - create new</title>
+    <link rel="stylesheet" th:href="@{/css/spaceship.css}" type="text/css"/>
+</head>
+<body>
+    <div>
+        <h1>Create new Spaceship</h1>
+        <form action="#" th:action="@{/spaceship/new}" th:object="${spaceship}" method="post">
+            <label for="name">Name</label>
+            <input type="text" th:field="*{name}" id="name" placeholder="Name of the spaceship">
+            <label for="crew">Number of crew members</label>
+            <input type="number" th:field="*{crew}" id="crew" placeholder="Number of crew members">
+            <input type="submit" value = "create spaceship">
+        </form>
+    </div>
+</body>
+</html>

@@ -3,8 +3,8 @@ package com.itayventura.spaceship;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -21,6 +21,18 @@ public class SpaceshipController {
             model.addAttribute("spaceships",spaceships);
         }
         return "spaceship";
+    }
+
+    @GetMapping("/new")
+    public String newSpaceship(Model model){
+        model.addAttribute("spaceship", new Spaceship());
+        return "newSpaceshipForm";
+    }
+
+    @PostMapping("/new")
+    public String createSpaceship(@ModelAttribute Spaceship spaceship, Model model, BindingResult bindingResult){
+        this.repository.save(spaceship);
+        return getSpaceships(model);
     }
 
 }
