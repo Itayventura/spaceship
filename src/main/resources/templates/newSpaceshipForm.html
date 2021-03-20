@@ -8,9 +8,11 @@
 </head>
 <body>
 
-    <div th:replace="fragments/navigation.html :: topNavigation">
-        some staff replaced
+<div th:replace="fragments/navigation.html :: topNavigation(~{ :: .location})">
+    <div class ="location">
+        Create a brand new spaceship
     </div>
+</div>
 
     <div>
         <h1>Create new Spaceship</h1>

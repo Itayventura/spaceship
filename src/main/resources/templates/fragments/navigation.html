@@ -8,9 +8,9 @@
 
 <body>
 
-<div th:fragment="topNavigation" class="navcontainer">
+<div th:fragment="topNavigation(currentLocation)" class="navcontainer">
     <div class="navitem navtitle">Spaceship Application!!!!</div>
-    <div class="navitem navlocation">Location... this html is not going be seen</div>
+    <div class="navitem navlocation" th:insert="${currentLocation}">Location... this html is not going be seen</div>
     <div class="navitem"><a th:href="@{/spaceship/}">Overview</a></div>
     <div class="navitem"><a th:href="@{/spaceship/new}">Create Spaceship</a></div>
 </div>
