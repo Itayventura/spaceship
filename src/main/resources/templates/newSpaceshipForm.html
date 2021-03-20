@@ -4,8 +4,14 @@
     <meta charset="UTF-8">
     <title>Spaceships - create new</title>
     <link rel="stylesheet" th:href="@{/css/newspaceship.css}" type="text/css"/>
+    <link rel="stylesheet" th:href="@{/css/navigation.css}" type="text/css"/>
 </head>
 <body>
+
+    <div th:replace="fragments/navigation.html :: topNavigation">
+        some staff replaced
+    </div>
+
     <div>
         <h1>Create new Spaceship</h1>
         <form action="#" th:action="@{/spaceship/new}" th:object="${spaceship}" method="post">
