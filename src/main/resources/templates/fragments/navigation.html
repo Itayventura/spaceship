@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>does not matter</title>
+    <link rel="stylesheet" th:href="@{/css/navigation.css}" type="text/css"/>
+</head>
+
+<body>
+
+<div th:fragment="topNavigation" class="navcontainer">
+    <div class="navitem navtitle">Spaceship Application!!!!</div>
+    <div class="navitem navlocation">Location... this html is not going be seen</div>
+    <div class="navitem"><a th:href="@{/spaceship/}">Overview</a></div>
+    <div class="navitem"><a th:href="@{/spaceship/new}">Create Spaceship</a></div>
+</div>
+
+</body>

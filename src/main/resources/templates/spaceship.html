@@ -4,8 +4,14 @@
     <meta charset="UTF-8">
     <title>Spaceships</title>
     <link rel="stylesheet" th:href="@{/css/spaceship.css}" type="text/css"/>
+    <link rel="stylesheet" th:href="@{/css/navigation.css}" type="text/css"/>
 </head>
 <body>
+
+    <div th:replace="fragments/navigation.html :: topNavigation">
+        some staff replaced
+    </div>
+
     <div th:switch="${spaceships}">
         <h1 th:case="null">No Spaceships</h1>
         <h1 th:case="*">List Of Spaceships</h1>
