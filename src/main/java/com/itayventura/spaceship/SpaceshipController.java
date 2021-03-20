@@ -4,7 +4,9 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.*;
+import javax.validation.Valid;
 
 import java.util.List;
 
@@ -30,7 +32,14 @@ public class SpaceshipController {
     }
 
     @PostMapping("/new")
-    public String createSpaceship(@ModelAttribute Spaceship spaceship, Model model, BindingResult bindingResult){
+    public String createSpaceship(@Valid @ModelAttribute("spaceship") Spaceship spaceship,
+                                  BindingResult bindingResult, Model model){
+        if (spaceship.getName().startsWith("F"))
+            bindingResult.addError(new FieldError("spaceship", "name", "We dont want " +
+                    "spaceships starting with an F!!!"));
+        if (bindingResult.hasErrors()){
+            return "newSpaceshipForm";
+        }
         this.repository.save(spaceship);
         return getSpaceships(model);
     }
