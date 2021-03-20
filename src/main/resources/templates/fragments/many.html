@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>does not matter</title>
+    <link rel="stylesheet" th:href="@{/css/many.css}" type="text/css"/>
+</head>
+
+<body>
+
+<div th:fragment="many" class="many">
+    wow many spaceships
+</div>
+
+<div th:fragment="notmany" class="notmany">
+    so little spaceships<br>
+    return later
+</div>
+
+</body>
