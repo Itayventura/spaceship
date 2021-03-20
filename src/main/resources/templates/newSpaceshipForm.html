@@ -1,19 +1,15 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="~{mainlayout.html}">
 <head>
     <meta charset="UTF-8">
     <title>Spaceships - create new</title>
     <link rel="stylesheet" th:href="@{/css/newspaceship.css}" type="text/css"/>
-    <link rel="stylesheet" th:href="@{/css/navigation.css}" type="text/css"/>
 </head>
 <body>
 
-<div th:replace="fragments/navigation.html :: topNavigation(~{ :: .location})">
-    <div class ="location">
-        Create a brand new spaceship
-    </div>
-</div>
-
+<div layout:fragment="some-content">
     <div>
         <h1>Create new Spaceship</h1>
         <form action="#" th:action="@{/spaceship/new}" th:object="${spaceship}" method="post">
@@ -32,5 +28,6 @@
             </div>
         </form>
     </div>
+</div>
 </body>
 </html>
