@@ -6,6 +6,8 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.*;
+
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 import java.util.List;
@@ -17,11 +19,10 @@ public class SpaceshipController {
     private final SpaceshipRepository repository;
 
     @GetMapping("/")
-    public String getSpaceships(Model model){
+    public String getSpaceships(Model model, HttpServletRequest request){
         List<Spaceship> spaceships = repository.findAll();
-        if (spaceships.size() != 0){
-            model.addAttribute("spaceships",spaceships);
-        }
+        model.addAttribute("spaceships",spaceships);
+        model.addAttribute("isManager", request.isUserInRole("ROLE_MANAGER"));
         return "spaceship";
     }
 
@@ -33,7 +34,7 @@ public class SpaceshipController {
 
     @PostMapping("/new")
     public String createSpaceship(@Valid @ModelAttribute("spaceship") Spaceship spaceship,
-                                  BindingResult bindingResult, Model model){
+                                  BindingResult bindingResult, Model model, HttpServletRequest request){
         if (spaceship.getName().startsWith("F"))
             bindingResult.addError(new FieldError("spaceship", "name", "We dont want " +
                     "spaceships starting with an F!!!"));
@@ -41,13 +42,13 @@ public class SpaceshipController {
             return "newSpaceshipForm";
         }
         this.repository.save(spaceship);
-        return getSpaceships(model);
+        return getSpaceships(model, request);
     }
 
     @GetMapping("/delete/{id}")
-    public String deleteSpaceship(@PathVariable("id") Integer id, Model model){
+    public String deleteSpaceship(@PathVariable("id") Integer id, Model model, HttpServletRequest request){
         this.repository.deleteById(id);
-        return getSpaceships(model);
+        return getSpaceships(model, request);
     }
 
 }
