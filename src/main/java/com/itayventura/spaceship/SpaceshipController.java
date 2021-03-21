@@ -27,8 +27,9 @@ public class SpaceshipController {
     }
 
     @GetMapping("/new")
-    public String newSpaceship(Model model){
+    public String newSpaceship(Model model, HttpServletRequest request){
         model.addAttribute("spaceship", new Spaceship());
+        model.addAttribute("isManager", request.isUserInRole("ROLE_MANAGER"));
         return "newSpaceshipForm";
     }
 

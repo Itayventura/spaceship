@@ -12,7 +12,7 @@
     <div class="navitem navtitle">Spaceship Application!!!!</div>
     <div class="navitem navlocation" th:insert="${currentLocation}">Location... this html is not going be seen</div>
     <div class="navitem"><a th:href="@{/spaceship/}">Overview</a></div>
-    <div class="navitem"><a th:href="@{/spaceship/new}">Create Spaceship</a></div>
+    <div class="navitem" th:if="${isManager == true}"><a th:href="@{/spaceship/new}">Create Spaceship</a></div>
 </div>
 
 </body>
